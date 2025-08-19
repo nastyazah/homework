@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея</title>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet"> <!-- Готичний шрифт -->
+</head>
+<body>
+    <header>
+        <h1>Галерея</h1>
+        <nav>
+            <ul class="menu" style="list-style-type: none; padding: 0;">
+                <li style="display: inline;"><a href="about.html">Про автора</a></li>
+                <li style="display: inline;"><a href="gallery.html">Галерея</a></li>
+                <li style="display: inline;"><a href="contacts.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Категорії зображень</h2>
+            <ul>
+                <li>Нічні пейзажі</li>
+                <li>Старовинна архітектура</li>
+                <li>Макро фотографія</li>
+                <li>Темна естетика</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Роботи</h2>
+            <div class="image-container">
+                <span class="arrow" onclick="changeImage(-1)">&#10094;</span> <!-- Стрілка вліво -->
+                <figure id="current-image">
+                    <img src="image1.jpg" alt="Статуя засмученого янгола" style="max-width: 100%; height: auto;">
+                    <figcaption>Статуя засмученого янгола</figcaption>
+                </figure>
+                <span class="arrow" onclick="changeImage(1)">&#10095;</span> <!-- Стрілка вправо -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>2025 Всі права захищені Господом Богом</p>
+    </footer>
+
+    <script>
+        const images = [
+            { src: "image1.jpg", caption: "Статуя засмученого янгола" },
+            { src: "image2.jpg", caption: "Одинока темна троянда" },
+            { src: "image3.jpg", caption: "Таємнича фігура в довгому капюшоні або вуалі" },
+            { src: "image4.jpg", caption: "Чорно-біла тінь крила" },
+            { src: "image5.jpg", caption: "Біг-Бен в Лондоні" }
+        ];
+        let currentIndex = 0;
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1; // Повертається до останнього зображення
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0; // Повертається до першого зображення
+            }
+            updateImage();
+        }
+
+        function updateImage() {
+            const imageElement = document.getElementById("current-image").getElementsByTagName("img")[0];
+            const captionElement = document.getElementById("current-image").getElementsByTagName("figcaption")[0];
+            imageElement.src = images[currentIndex].src;
+            captionElement.textContent = images[currentIndex].caption;
+        }
+    </script>
+     <style>
+        body {
+            background-color: #121212; /* Темний фон */
+            color: #ffffff; /* Білий текст */
+            font-family: 'Uncial Antiqua', cursive; /* Готичний шрифт */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+        nav {
+            background-color: #1e1e1e; /* Темніший фон для навігації */
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #ffffff; /* Білий текст для посилань */
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline; /* Підкреслення при наведенні */
+        }
+        main {
+            padding: 20px;
+            text-align: center; /* Центрування вмісту */
+        }
+        section {
+            margin-bottom: 40px; /* Відстань між секціями */
+        }
+        figure {
+            margin: 20px 0; /* Відстань між фігурами */
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 2em;
+            margin: 0 20px;
+            color: #ffffff; /* Білий колір для стрілок */
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #1e1e1e; /* Темніший фон для футера */
+            font-weight: normal; /* Зменшена жирність тексту футера */
+        }
+    </style>
+</body>
+</html>
+
